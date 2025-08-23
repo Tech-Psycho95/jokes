@@ -2,7 +2,7 @@ package com.sidharth.jokes.data.mapper
 
 import com.sidharth.jokes.data.remote.response.JokeResponse
 import com.sidharth.jokes.domain.model.Joke
-import com.sidharth.jokes.domain.model.JokeType
+import com.sidharth.jokes.core.enums.JokeType
 
 fun JokeResponse.toDomain(): Joke? {
     val type = JokeType.fromType(type)

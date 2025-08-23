@@ -16,7 +16,7 @@ class JokesRepositoryImpl(
     }
 
     override suspend fun getJokes(): Flow<List<Joke>> = flow {
-        val response = remoteDataSource.fetchJokes().mapNotNull { it.toDomain() }
+        val response = remoteDataSource.fetchJokes().toDomain()
         emit(response)
     }
 }

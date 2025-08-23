@@ -1,4 +1,4 @@
-package com.sidharth.jokes.domain.model
+package com.sidharth.jokes.core.enums
 
 enum class JokeType(
     private val key: String

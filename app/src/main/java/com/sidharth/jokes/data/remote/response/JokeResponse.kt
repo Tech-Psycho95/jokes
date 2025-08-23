@@ -9,7 +9,7 @@ data class JokeResponse(
     @SerializedName("error")
     val error: Boolean,
     @SerializedName("flags")
-    val flags: Flags,
+    val flags: FlagsResponse,
     @SerializedName("id")
     val id: Int,
     @SerializedName("lang")

@@ -8,7 +8,7 @@ class GetJokeUseCase(
     private val jokesRepository: JokesRepository
 ) {
 
-    suspend fun fetchJoke(): Flow<Joke> {
+    suspend fun invoke(): Flow<Joke> {
         return jokesRepository.getJoke()
     }
 }
