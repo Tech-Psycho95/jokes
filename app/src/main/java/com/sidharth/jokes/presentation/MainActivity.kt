@@ -42,24 +42,30 @@ class MainActivity : AppCompatActivity() {
         repeatOnLifecycle(
             Lifecycle.State.STARTED,
         ) {
-            viewModel.shouldShowSingleJoke.collectLatest { showSingle ->
-                viewBinding.apply {
-                    rvJokes.isVisible = !showSingle
-                    tvJoke.isVisible = showSingle
-                }
-                viewBinding.btnToggle.text = "Show List".takeIf { showSingle } ?: "Show Single"
-            }
-
-            viewModel.joke.collectLatest { joke ->
-                Log.d("thisisajoke", "$joke")
-                joke?.let {
-                    viewBinding.tvJoke.text = it.data.joinToString { it1 -> "$it1\n" }
+            launch {
+                viewModel.shouldShowSingleJoke.collectLatest { showSingle ->
+                    viewBinding.apply {
+                        rvJokes.isVisible = !showSingle
+                        tvJoke.isVisible = showSingle
+                    }
+                    viewBinding.btnToggle.text = "Show List".takeIf { showSingle } ?: "Show Single"
                 }
             }
 
-            viewModel.jokes.collectLatest {
-
+            launch {
+                viewModel.joke.collectLatest { joke ->
+                    joke?.let {
+                        viewBinding.tvJoke.text = it.data.joinToString { it1 -> "$it1\n" }
+                    }
+                }
             }
+
+            launch {
+                viewModel.jokes.collectLatest {
+
+                }
+            }
+
         }
         }
     }
